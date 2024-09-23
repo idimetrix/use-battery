@@ -21,34 +21,35 @@ import React from "react";
 import { useBattery } from "use-battery3";
 
 const BatteryStatus: React.FC = () => {
-   const { supported, loading, level, charging, chargingTime, dischargingTime } = useBattery();
+  const { supported, loading, level, charging, chargingTime, dischargingTime } =
+    useBattery();
 
-   if (!supported) {
-      return <p>Your browser does not support the Battery API.</p>;
-   }
+  if (!supported) {
+    return <p>Your browser does not support the Battery API.</p>;
+  }
 
-   if (loading) {
-      return <p>Loading battery status...</p>;
-   }
+  if (loading) {
+    return <p>Loading battery status...</p>;
+  }
 
-   return (
-     <div>
-        <h2>Battery Status</h2>
-        <p>Battery Level: {level !== null ? (level * 100).toFixed(0) : "N/A"}%</p>
-        <p>Charging: {charging !== null ? (charging ? "Yes" : "No") : "N/A"}</p>
-        {charging ? (
-          <p>
-             Charging Time:{" "}
-             {chargingTime !== null ? chargingTime + " seconds" : "N/A"}
-          </p>
-        ) : (
-          <p>
-             Discharging Time:{" "}
-             {dischargingTime !== null ? dischargingTime + " seconds" : "N/A"}
-          </p>
-        )}
-     </div>
-   );
+  return (
+    <div>
+      <h2>Battery Status</h2>
+      <p>Battery Level: {level !== null ? (level * 100).toFixed(0) : "N/A"}%</p>
+      <p>Charging: {charging !== null ? (charging ? "Yes" : "No") : "N/A"}</p>
+      {charging ? (
+        <p>
+          Charging Time:{" "}
+          {chargingTime !== null ? chargingTime + " seconds" : "N/A"}
+        </p>
+      ) : (
+        <p>
+          Discharging Time:{" "}
+          {dischargingTime !== null ? dischargingTime + " seconds" : "N/A"}
+        </p>
+      )}
+    </div>
+  );
 };
 
 export default BatteryStatus;

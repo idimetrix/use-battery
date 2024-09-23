@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface BatteryManager extends EventTarget {
-  charging: boolean
-  chargingTime: number
-  dischargingTime: number
-  level: number
+  charging: boolean;
+  chargingTime: number;
+  dischargingTime: number;
+  level: number;
 }
 
 type NavigatorWithBattery = Navigator & {
-  getBattery: () => Promise<BatteryManager>
-}
+  getBattery: () => Promise<BatteryManager>;
+};
 
 // Define the shape of the battery state with proper types
 interface BatteryState {
@@ -65,19 +65,19 @@ export function useBattery(): BatteryState {
       handleChange(); // Initialize state with current battery values
 
       // Set up event listeners for changes in battery properties
-      battery.addEventListener('levelchange', handleChange);
-      battery.addEventListener('chargingchange', handleChange);
-      battery.addEventListener('chargingtimechange', handleChange);
-      battery.addEventListener('dischargingtimechange', handleChange);
+      battery.addEventListener("levelchange", handleChange);
+      battery.addEventListener("chargingchange", handleChange);
+      battery.addEventListener("chargingtimechange", handleChange);
+      battery.addEventListener("dischargingtimechange", handleChange);
     });
 
     // Clean up event listeners on component unmount
     return () => {
       if (battery) {
-        battery.removeEventListener('levelchange', handleChange);
-        battery.removeEventListener('chargingchange', handleChange);
-        battery.removeEventListener('chargingtimechange', handleChange);
-        battery.removeEventListener('dischargingtimechange', handleChange);
+        battery.removeEventListener("levelchange", handleChange);
+        battery.removeEventListener("chargingchange", handleChange);
+        battery.removeEventListener("chargingtimechange", handleChange);
+        battery.removeEventListener("dischargingtimechange", handleChange);
       }
     };
   }, []);
